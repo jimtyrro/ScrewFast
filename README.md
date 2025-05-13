@@ -4,7 +4,13 @@
 
 ScrewFast is an **open-source template** designed for quick and efficient web project setup, blending **minimalism with functionality**. Whether you're showcasing a portfolio, launching a company landing page, or running a blog, ScrewFast provides everything you need. By combining the power of the [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and [Preline UI](https://preline.co/), this template offers a functional and aesthetically pleasing solution for your web presence.
 
-**[View Live Demo](https://screwfast.uk)**
+<p align="left">
+    <a href="https://screwfast.uk" target="_blank">
+      <img src="https://vyclk3sx0z.ufs.sh/f/hv6ttNERWpXu6c2AP0GCBnYt4h3FbsMuKyP5RxQ21HvzIae0" alt="ScrewFast Demo" width="180"/></a>
+  &nbsp;&nbsp;&nbsp;
+    <a href="https://atemplate.com/item/screwfast" target="_blank">
+      <img src="https://atemplate.com/badages-awards.svg" alt="ScrewFast | A template" width="180"/></a>
+</p>
 
 ## Table of Contents
 
@@ -183,8 +189,7 @@ src/
 │   ├── blog/
 │   ├── docs/           
 │   ├── insights/         
-│   ├── products/         
-│   └── config.ts         # Contains site-wide configuration options
+│   └── products/         
 ├── data_files/           # Strings stored as JSON files
 ├── images/               # Static image assets for use across the website
 ├── layouts/              # Components defining layout templates
@@ -199,8 +204,8 @@ src/
 │   ├── products/         
 │   ├── robots.txt.ts     # Dynamically generates robots.txt
 │   └── services.astro
-└── utils/                # Shared utility functions and helpers
-
+├── utils/                # Shared utility functions and helpers
+└── content.config.ts     # Contains content collections configuration options
 ```
 
 ## Static Assets and Public Resources
@@ -398,7 +403,7 @@ Please note that smooth scrolling can affect accessibility and performance on so
 
 ### GSAP Integration
 
- For individual product pages, [GSAP](https://gsap.com/) has been integrated to add engaging animations that execute as soon as the product page loads. You can find and modify the GSAP configuration in the script sections of the product page file located at `src/pages/products/[...slug].astro` and the insights page at `src/pages/insights/[...slug].astro`:
+ For individual product pages, [GSAP](https://gsap.com/) has been integrated to add engaging animations that execute as soon as the product page loads. You can find and modify the GSAP configuration in the script sections of the product page file located at `src/pages/products/[id].astro` and the insights page at `src/pages/insights/[id].astro`:
 
 ```astro
 <script>
