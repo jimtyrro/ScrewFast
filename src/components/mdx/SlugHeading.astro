@@ -1,0 +1,23 @@
+---
+// Shared heading-override renderer for TinaMarkdown's rich-text AST.
+// TinaMarkdown passes heading content as a slot (no plain-text prop), so we
+// render the slot, strip tags to get the text, and slugify it the same way
+// Astro's own markdown pipeline (rehype-slug -> github-slugger) does -
+// matching heading ids so the insights page's table-of-contents script
+// (which scans rendered `id` attributes) keeps working against TinaMarkdown
+// output. Note: unlike rehype-slug this slugs each heading independently,
+// with no cross-heading duplicate-suffix disambiguation within one document.
+import GithubSlugger from 'github-slugger';
+
+interface Props {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+const { level } = Astro.props;
+const rendered = await Astro.slots.render('default');
+const text = rendered.replace(/<[^>]*>/g, '').trim();
+const id = new GithubSlugger().slug(text);
+const html = `<h${level} id="${id}">${rendered}</h${level}>`;
+---
+
+<Fragment set:html={html} />

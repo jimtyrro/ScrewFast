@@ -48,6 +48,9 @@ importers:
       clipboard:
         specifier: ^2.0.11
         version: 2.0.11
+      github-slugger:
+        specifier: ^2.0.0
+        version: 2.0.0
       globby:
         specifier: ^16.2.1
         version: 16.2.2
@@ -5601,8 +5604,8 @@ packages:
     resolution: {integrity: sha512-DTPx3RWSSnWyzLxQnlH0rJP+EW5ekl16ZU4/psbIhA0e53kJfdgaN5vKM+xP7yJtXVu+nfdVFmlgFDEKAe4Pyw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.408.2:
-    resolution: {integrity: sha512-5aIjBy98bbob+6StDa3ZwW7IkB7MAT+61uA2In2yRmP5O2vU6ytX3caZJZGXCphJvW2b2u+AQsBuWNBM5cxzyg==}
+  posthog-js@1.408.3:
+    resolution: {integrity: sha512-hs7XiS4aKhXKssfuvGRoFMFpaAr5XeOAO71aPJqJYMISIXMJaWrVIvKcuTTraokP5Z8YBeDJSiv+dOTrGyyCPg==}
 
   posthog-node@5.46.1:
     resolution: {integrity: sha512-WjCqExq44pBdyg9MSsH6UAE0tNZ88p4aIuVFicgqhjf2Fbws6IhS4ioYUa4aBrbUPS9EDRXtBTtF5DpP1ml8Pw==}
@@ -13589,7 +13592,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  posthog-js@1.408.2:
+  posthog-js@1.408.3:
     dependencies:
       '@posthog/browser-common': 0.2.5
       '@posthog/core': 1.45.3
@@ -14786,7 +14789,7 @@ snapshots:
       lucide-react: 0.424.0(react@19.2.8)
       mermaid: 11.16.0
       monaco-editor: 0.31.0
-      posthog-js: 1.408.2
+      posthog-js: 1.408.3
       prism-react-renderer: 2.4.1(react@19.2.8)
       prop-types: 15.7.2
       react: 19.2.8

@@ -1,0 +1,113 @@
+---
+// The editable region for a single blog post: avatar/meta, title, image,
+// rich-text body, tags, and share controls. Registered in src/lib/tina/islands.ts
+// and rendered both here (initial page load) and by the tina-island endpoint
+// (live overlay re-render while editing).
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
+import Bookmark from '@components/ui/buttons/Bookmark.astro';
+import SocialShare from '@components/ui/buttons/SocialShare.astro';
+import PostFeedback from '@components/ui/feedback/PostFeedback.astro';
+import { capitalize, formatDate } from '@utils/utils';
+import type { BlogQuery } from '../../../tina/__generated__/types';
+
+interface Props {
+  data?: BlogQuery['blog'] | null;
+}
+
+const { data } = Astro.props;
+const isFr = data?._sys.relativePath.startsWith('fr/') ?? false;
+---
+
+{data && (
+  <div class="max-w-2xl">
+    <div class="mb-6 flex items-center justify-between">
+      <div class="flex w-full gap-x-5 sm:items-center sm:gap-x-3">
+        <div class="shrink-0">
+          <img
+            class="size-10 rounded-full sm:h-14 sm:w-14"
+            src={data.authorImage}
+            alt={data.authorImageAlt}
+            draggable={'false'}
+            loading="lazy"
+            decoding="async"
+            data-tina-field={tinaField(data, 'authorImage')}
+          />
+        </div>
+        <div class="grow">
+          <div class="flex items-center justify-between gap-x-2">
+            <div>
+              <span
+                class="font-bold text-neutral-700 dark:text-neutral-300"
+                data-tina-field={tinaField(data, 'author')}>
+                {data.author}
+              </span>
+              <ul class="text-xs text-neutral-500">
+                <li
+                  class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-neutral-300 last:pe-0 last-of-type:before:hidden dark:text-neutral-400 dark:before:bg-neutral-600"
+                  data-tina-field={tinaField(data, 'pubDate')}>
+                  {formatDate(new Date(data.pubDate))}
+                </li>
+                <li
+                  class="relative inline-block pe-6 before:absolute before:end-2 before:top-1/2 before:size-1 before:-translate-y-1/2 before:rounded-full before:bg-neutral-300 last:pe-0 last-of-type:before:hidden dark:text-neutral-400 dark:before:bg-neutral-600"
+                  data-tina-field={tinaField(data, 'readTime')}>
+                  {data.readTime} min read
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* Blog post title */}
+    <h2
+      class="mb-3 text-2xl font-bold text-neutral-800 md:text-3xl dark:text-neutral-200"
+      data-tina-field={tinaField(data, 'title')}>
+      {data.title}
+    </h2>
+    {/* Featured image */}
+    <img
+      class="mb-5 w-full rounded-xl object-cover md:mb-8"
+      src={data.cardImage}
+      alt={data.cardImageAlt}
+      draggable={'false'}
+      loading="eager"
+      decoding="async"
+      data-tina-field={tinaField(data, 'cardImage')}
+    />
+    {/* Blog post content */}
+    <div
+      class="prose prose-lg dark:prose-invert mb-5 max-w-none text-pretty text-neutral-700 md:mb-8 dark:text-neutral-300"
+      data-tina-field={tinaField(data, 'body')}>
+      <TinaMarkdown content={data.body} />
+    </div>
+    <div
+      class="mx-auto grid max-w-(--breakpoint-lg) gap-y-5 sm:flex sm:items-center sm:justify-between sm:gap-y-0">
+      {/* Blog post tags */}
+      <div
+        class="flex flex-wrap gap-x-2 gap-y-1 sm:flex-nowrap sm:items-center sm:gap-y-0"
+        data-tina-field={tinaField(data, 'tags')}>
+        {data.tags?.map(tag => tag && (
+          <span class="inline-flex items-center gap-x-1.5 rounded-lg bg-neutral-400/30 px-3 py-1.5 text-xs font-medium text-neutral-700 outline-hidden focus:outline-hidden focus-visible:ring-3 focus-visible:outline-hidden dark:bg-neutral-700/60 dark:text-neutral-300">
+            {capitalize(tag)}
+          </span>
+        ))}
+      </div>
+      {/* Bookmark and Share buttons */}
+      <div class="flex items-center justify-end gap-x-1.5">
+        <Bookmark />
+        <div
+          class="mx-3 block h-4 border-e border-neutral-400 dark:border-neutral-500">
+        </div>
+        <div class="inline-flex">
+          <SocialShare pageTitle={data.title} />
+        </div>
+      </div>
+    </div>
+  </div>
+  <PostFeedback
+    title={isFr ? 'Cet article était-il utile?' : 'Was this post helpful?'}
+    firstChoice={isFr ? 'Oui' : 'Yes'}
+    secondChoice={isFr ? 'Non' : 'No'}
+  />
+)}

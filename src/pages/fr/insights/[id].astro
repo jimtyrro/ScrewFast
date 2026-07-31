@@ -2,30 +2,35 @@
 // Import section components
 import { SITE } from '@data/constants';
 import MainLayout from '@/layouts/MainLayout.astro';
-import { getCollection, render } from 'astro:content';
+import TinaIsland from '@tinacms/astro/TinaIsland.astro';
+import InsightBody from '@components/islands/InsightBody.astro';
+import { getCollection } from 'astro:content';
+import { getInsight } from '@/lib/tina/data';
+import { islands } from '@/lib/tina/islands';
 
-// Use `getStaticPaths` to generate static routes for generated pages on build
 export async function getStaticPaths() {
   const insightPosts = await getCollection('insights', ({ id }) =>
     id.startsWith('fr/')
   );
   return insightPosts.map(post => {
-    const idWithoutLang = post.id.replace(/^fr\//, ''); // Remove the "fr/" prefix
+    const idWithoutLang = post.id.replace(/^fr\//, '');
     return {
       params: { lang: 'fr', id: idWithoutLang },
-      props: { post },
     };
   });
 }
 
-// Get the props for this page that define a specific insight post
-const { post } = Astro.props;
+const slug = Astro.params.id ?? '';
+const result = await getInsight(`fr/${slug}.md`);
+const post = result.data?.insights;
 
-const { Content } = await render(post);
+if (!post) {
+  return new Response('Not Found', { status: 404 });
+}
 
-const pageTitle: string = `${post.data.title} | ${SITE.title}`;
-const metaDescription = post.data.description;
-const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
+const pageTitle: string = `${post.title} | ${SITE.title}`;
+const metaDescription = post.description;
+const ogTitle = `${post.title} | Insights | ${SITE.title}`;
 ---
 
 <MainLayout
@@ -36,9 +41,9 @@ const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: post.data.title,
+    headline: post.title,
     description: metaDescription,
-    image: post.data.cardImage,
+    image: post.cardImage,
     author: {
       '@type': 'Organization',
       name: SITE.title,
@@ -53,66 +58,20 @@ const ogTitle = `${post.data.title} | Insights | ${SITE.title}`;
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://screwfast.uk/fr/insights/${post.id.replace(/^fr\//, '')}`,
+      '@id': `https://screwfast.uk/fr/insights/${slug}`,
     },
     inLanguage: 'fr',
   }}
 >
   <section class="py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-(--breakpoint-xl) px-4 md:px-8">
-      <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
-        <div>
-          <div class="h-64 overflow-hidden rounded-lg shadow-lg md:h-auto">
-            <img
-              class="h-full w-full object-cover object-center"
-              src={post.data.cardImage}
-              alt={post.data.cardImageAlt}
-              draggable={'false'}
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-          <div
-            id="progress-mobile"
-            class="fixed top-0 left-0 h-2 w-full bg-linear-to-r from-orange-400/30 to-orange-400 md:hidden"
-          >
-          </div>
-          <div id="pin" class="mt-10 hidden space-y-4 md:block">
-            <div
-              class="h-px w-full overflow-hidden bg-neutral-300 dark:bg-neutral-700"
-            >
-              <div
-                id="progress"
-                class="h-px w-full bg-linear-to-r from-orange-400/30 to-orange-400"
-              >
-              </div>
-            </div>
-            <p class="text-sm text-pretty text-neutral-500">
-              Table of Contents:
-            </p>
-            <div id="toc" class="">
-              <ul
-                class="space-y-2 text-base text-pretty text-neutral-700 transition duration-300 dark:text-neutral-400"
-              >
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:pt-8">
-          <h1
-            class="mb-4 text-center text-2xl font-bold text-balance text-neutral-800 sm:text-3xl md:mb-6 md:text-left dark:text-neutral-200"
-          >
-            {post.data.title}
-          </h1>
-
-          <article
-            class="text-lg text-pretty text-neutral-700 dark:text-neutral-300"
-          >
-            <Content />
-          </article>
-        </div>
-      </div>
+      <TinaIsland
+        name="insights"
+        wrapper={islands.insights.wrapper}
+        params={{ locale: 'fr', slug }}
+        primary>
+        <InsightBody data={post} />
+      </TinaIsland>
     </div>
   </section>
 </MainLayout>
