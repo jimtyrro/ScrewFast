@@ -211,8 +211,8 @@ const ogTitle = `${product.data.title} | Outils Matériels | ScrewFast`;
                                 // Wrap each row's content in a separate <tr> element
                                 row.description.map(rowData => (
                                   <tr>
-                                    {/* Iterate through each cell value in the row's description array */}
-                                    {rowData.map(cellValue => (
+                                    {/* Iterate through each cell value in the row's cells array */}
+                                    {rowData.cells.map(cellValue => (
                                       // Render each cell value in its own <td> element
                                       <td class="px-6 py-4 text-sm font-medium whitespace-nowrap text-neutral-600 dark:text-neutral-400">
                                         {cellValue}

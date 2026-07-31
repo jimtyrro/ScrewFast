@@ -43,11 +43,11 @@ specificationsLeft:
 tableData:
   - feature: ['Specification', 'Value']
     description:
-      - ['Length (mm)', 'Various']
-      - ['Weight (g)', 'N/A']
-      - ['Material', 'Stainless Steel']
-      - ['Finish', 'Assorted']
-      - ['Package Contents', 'Various screws in a set']
+      - cells: ['Length (mm)', 'Various']
+      - cells: ['Weight (g)', 'N/A']
+      - cells: ['Material', 'Stainless Steel']
+      - cells: ['Finish', 'Assorted']
+      - cells: ['Package Contents', 'Various screws in a set']
 blueprints:
   first: '@/images/blueprint-1.avif'
   second: '@/images/blueprint-2.avif'

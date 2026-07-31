@@ -59,7 +59,7 @@ const productsCollection = defineCollection({
         .array(
           z.object({
             feature: z.array(z.string()),
-            description: z.array(z.array(z.string())),
+            description: z.array(z.object({ cells: z.array(z.string()) })),
           })
         )
         .optional(),
@@ -76,7 +76,6 @@ const blogCollection = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      contents: z.array(z.string()),
       author: z.string(),
       role: z.string().optional(),
       authorImage: image(),

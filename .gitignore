@@ -3,6 +3,8 @@ dist/
 # generated types
 .astro/
 .idea/
+.zed/
+biome.json
 
 # dependencies
 node_modules/
@@ -20,3 +22,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+node_modules
+tina/__generated__

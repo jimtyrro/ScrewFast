@@ -43,11 +43,11 @@ specificationsLeft:
 tableData:
   - feature: ['Spécification', 'Valeur']
     description:
-      - ['Longueur (mm)', 'Divers']
-      - ['Poids (g)', 'N/A']
-      - ['Matériau', 'Acier Inoxydable']
-      - ['Finition', 'Assortie']
-      - ['Contenu du Pack', 'Diverses vis dans un ensemble']
+      - cells: ['Longueur (mm)', 'Divers']
+      - cells: ['Poids (g)', 'N/A']
+      - cells: ['Matériau', 'Acier Inoxydable']
+      - cells: ['Finition', 'Assortie']
+      - cells: ['Contenu du Pack', 'Diverses vis dans un ensemble']
 blueprints:
   first: '@/images/blueprint-1.avif'
   second: '@/images/blueprint-2.avif'
