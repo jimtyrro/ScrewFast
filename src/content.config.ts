@@ -11,15 +11,15 @@ const productsCollection = defineCollection({
     pattern: '**/[^_]*.{md,mdx}',
     base: './src/content/products',
   }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
       main: z.object({
         id: z.number(),
         content: z.string(),
-        imgCard: image(),
-        imgMain: image(),
+        imgCard: z.string(),
+        imgMain: z.string(),
         imgAlt: z.string(),
       }),
       tabs: z.array(
@@ -64,24 +64,24 @@ const productsCollection = defineCollection({
         )
         .optional(),
       blueprints: z.object({
-        first: image().optional(),
-        second: image().optional(),
+        first: z.string().optional(),
+        second: z.string().optional(),
       }),
     }),
 });
 
 const blogCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/blog' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
       author: z.string(),
       role: z.string().optional(),
-      authorImage: image(),
+      authorImage: z.string(),
       authorImageAlt: z.string(),
       pubDate: z.date(),
-      cardImage: image(),
+      cardImage: z.string(),
       cardImageAlt: z.string(),
       readTime: z.number(),
       tags: z.array(z.string()).optional(),
@@ -93,12 +93,12 @@ const insightsCollection = defineCollection({
     pattern: '**/[^_]*.{md,mdx}',
     base: './src/content/insights',
   }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
       // contents: z.array(z.string()),
-      cardImage: image(),
+      cardImage: z.string(),
       cardImageAlt: z.string(),
     }),
 });

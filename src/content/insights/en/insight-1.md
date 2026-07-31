@@ -1,13 +1,13 @@
 ---
-title: 'The Future of Construction Technology'
-description: "Explore ScrewFast's pioneering role in revolutionizing construction through advanced technology and innovative solutions."
-cardImage: '@/images/insights/insight-1.avif'
-cardImageAlt: 'Top view mechanical tools arrangement'
+title: The Future of Construction Technology
+description: Explore ScrewFast's pioneering role in revolutionizing construction through advanced technology and innovative solutions.
+cardImage: /images/insights/insight-1.avif
+cardImageAlt: Top view mechanical tools arrangement
 ---
 
 In the world of construction, where innovation meets practicality, ScrewFast stands as a beacon of pioneering advancements. For years, this company has been at the forefront of revolutionizing construction through its unwavering commitment to advanced technology and innovative solutions. From skyscrapers to bridges, ScrewFast has left an indelible mark on the industry, shaping the future of construction in ways once thought unimaginable.
 
-## A Legacy of Innovation
+## A Legacy of Innovation!
 
 Founded with a vision to redefine the norms of construction, ScrewFast embarked on a journey marked by relentless innovation. Since its inception, the company has continually pushed the boundaries of what is possible, introducing groundbreaking technologies that have transformed the way structures are built.
 

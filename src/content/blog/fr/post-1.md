@@ -2,10 +2,10 @@
 title: "Optimisation de l'efficacité avec les outils de pointe de ScrewFast"
 description: "Innovation de l'efficacité de la construction avec des outils de précision et un soutien."
 author: 'Jacob'
-authorImage: '@/images/blog/jacob.avif'
+authorImage: '/images/blog/jacob.avif'
 authorImageAlt: 'Avatar Description'
 pubDate: 2024-02-06
-cardImage: '@/images/blog/post-1.avif'
+cardImage: '/images/blog/post-1.avif'
 cardImageAlt: 'Top view mechanical tools arrangement'
 readTime: 4
 tags: ['outils', 'construction', 'flux de travail']

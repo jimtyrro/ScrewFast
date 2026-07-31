@@ -1,6 +1,5 @@
 ---
 // Import necessary modules and utilities
-import { Image } from 'astro:assets';
 import { formatDate } from '@utils/utils';
 import type { CollectionEntry } from 'astro:content';
 
@@ -20,12 +19,13 @@ interface Props {
   data-astro-prefetch
 >
   <div>
-    <Image
+    <img
       class="aspect-video rounded-xl"
       src={blogEntry.data.cardImage}
       alt={blogEntry.data.cardImageAlt}
       draggable={'false'}
-      format={'avif'}
+      loading="lazy"
+      decoding="async"
     />
     {/* The title of the blog post */}
     <h3

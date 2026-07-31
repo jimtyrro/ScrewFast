@@ -5,8 +5,8 @@ main:
   id: 4
   content: |
     Découvrez les boulons hexagonaux SF-FN F303 – le choix parfait pour les applications de fixation lourdes. Conçus avec précision et durabilité, ces boulons hexagonaux offrent la force et la fiabilité dont vous avez besoin pour vos projets les plus exigeants.
-  imgCard: '@/images/product-image-4.avif'
-  imgMain: '@/images/product-image-main-4.avif'
+  imgCard: '/images/product-image-4.avif'
+  imgMain: '/images/product-image-main-4.avif'
   imgAlt: 'Maquettes de boîtes de boulons hexagonaux'
 tabs:
   - id: 'tabs-with-card-item-1'
@@ -50,6 +50,6 @@ specificationsRight:
   - title: 'Applications'
     subTitle: "Idéal pour une utilisation dans la construction, les machines, l'automobile et d'autres applications lourdes nécessitant une fixation solide et fiable."
 blueprints:
-  first: '@/images/blueprint-1.avif'
-  second: '@/images/blueprint-2.avif'
+  first: '/images/blueprint-1.avif'
+  second: '/images/blueprint-2.avif'
 ---

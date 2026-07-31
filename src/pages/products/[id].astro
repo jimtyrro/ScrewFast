@@ -3,7 +3,6 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import ProductTabBtn from '@components/ui/buttons/ProductTabBtn.astro';
 import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { SITE } from '@data/constants';
 
@@ -80,13 +79,13 @@ const ogTitle = `${product.data.title} | Hardware Tools | ScrewFast`;
         </p>
       </div>
       <div>
-        <Image
+        <img
           id="fadeInMoveRight"
           src={product.data.main.imgMain}
           class="w-[600px]"
           alt={product.data.main.imgAlt}
-          format={'avif'}
-          loading={'eager'}
+          loading="eager"
+          decoding="async"
         />
       </div>
     </div>
@@ -242,11 +241,12 @@ const ogTitle = `${product.data.title} | Hardware Tools | ScrewFast`;
       >
         {
           product.data.blueprints.first && (
-            <Image
+            <img
               src={product.data.blueprints.first}
               class="h-full w-full object-cover object-center"
               alt="Blueprint Illustration"
-              format={'avif'}
+              loading="lazy"
+              decoding="async"
             />
           )
         }
@@ -255,11 +255,12 @@ const ogTitle = `${product.data.title} | Hardware Tools | ScrewFast`;
       <div class="relative right-12 overflow-hidden rounded-xl shadow-xl">
         {
           product.data.blueprints.second && (
-            <Image
+            <img
               src={product.data.blueprints.second}
               class="h-full w-full object-cover object-center"
               alt="Blueprint Illustration"
-              format={'avif'}
+              loading="lazy"
+              decoding="async"
             />
           )
         }
