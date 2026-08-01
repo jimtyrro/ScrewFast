@@ -6,6 +6,12 @@ export const InsightsCollection: Collection = {
   label: 'Insights',
   path: 'src/content/insights',
   format: 'md',
+  ui: {
+    router: ({ document }) => {
+      const [locale, filename] = document._sys.breadcrumbs;
+      return locale === 'fr' ? `/fr/insights/${filename}` : `/insights/${filename}`;
+    },
+  },
   fields: [
     {
       type: 'string',

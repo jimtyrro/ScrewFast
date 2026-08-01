@@ -6,6 +6,12 @@ export const ProductsCollection: Collection = {
   label: 'Products',
   path: 'src/content/products',
   format: 'md',
+  ui: {
+    router: ({ document }) => {
+      const [locale, filename] = document._sys.breadcrumbs;
+      return locale === 'fr' ? `/fr/products/${filename}` : `/products/${filename}`;
+    },
+  },
   fields: [
     {
       type: 'string',

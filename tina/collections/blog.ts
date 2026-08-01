@@ -6,6 +6,12 @@ export const BlogCollection: Collection = {
   label: 'Blog',
   path: 'src/content/blog',
   format: 'md',
+  ui: {
+    router: ({ document }) => {
+      const [locale, filename] = document._sys.breadcrumbs;
+      return locale === 'fr' ? `/fr/blog/${filename}` : `/blog/${filename}`;
+    },
+  },
   fields: [
     {
       type: 'string',
