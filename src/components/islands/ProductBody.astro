@@ -80,7 +80,9 @@ const { data } = Astro.props;
                   data-tina-field={tinaField(data, 'longDescription')}>
                   {data.longDescription?.title}
                 </h2>
-                <p class="mt-3 text-pretty text-neutral-600 dark:text-neutral-400">
+                <p
+                  class="mt-3 text-pretty text-neutral-600 dark:text-neutral-400"
+                  data-tina-field={tinaField(data, 'longDescription')}>
                   {data.longDescription?.subTitle}
                 </p>
                 <p class="mt-5">
@@ -92,8 +94,8 @@ const { data } = Astro.props;
               </div>
 
               <div class="space-y-6 lg:space-y-10">
-                {data.descriptionList?.map(item => item && (
-                  <div class="flex">
+                {data.descriptionList?.map((item, i) => item && (
+                  <div class="flex" data-tina-field={tinaField(data, 'descriptionList', i)}>
                     <div>
                       <h3 class="text-base font-bold text-neutral-800 sm:text-lg dark:text-neutral-200">
                         {item.title}
@@ -113,8 +115,8 @@ const { data } = Astro.props;
           <div class="mx-auto max-w-[85rem] px-4 pb-10 sm:px-6 lg:px-8 lg:pb-14">
             <div class="grid w-full grid-cols-1 gap-x-16 md:grid-cols-2">
               <div class="max-w-md space-y-6">
-                {data.specificationsLeft?.map(spec => spec && (
-                  <div>
+                {data.specificationsLeft?.map((spec, i) => spec && (
+                  <div data-tina-field={tinaField(data, 'specificationsLeft', i)}>
                     <h3 class="block font-bold text-neutral-800 dark:text-neutral-200">
                       {spec.title}
                     </h3>
@@ -126,8 +128,8 @@ const { data } = Astro.props;
               </div>
               {data.specificationsRight && data.specificationsRight.length > 0 ? (
                 <div class="mt-6 max-w-md space-y-6 md:mt-0 md:ml-auto">
-                  {data.specificationsRight.map(spec => spec && (
-                    <div>
+                  {data.specificationsRight.map((spec, i) => spec && (
+                    <div data-tina-field={tinaField(data, 'specificationsRight', i)}>
                       <h3 class="block font-bold text-neutral-800 dark:text-neutral-200">
                         {spec.title}
                       </h3>
